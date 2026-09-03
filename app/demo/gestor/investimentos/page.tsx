@@ -9,6 +9,9 @@ import {
 export const metadata: Metadata = {
   title: "Investimentos do Gestor",
   description: "Carteira de investimentos, evolução do patrimônio e ranking por classe, produto e emissor em uma demonstração do Gestor com dados fictícios.",
+  alternates: {
+    canonical: "/demo/gestor/investimentos",
+  },
 }
 
 function pct(n: number | null) {

@@ -5,6 +5,9 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Hub Comercial: demonstração",
   description: "Demonstração da Central de Decisão do Hub Comercial, com BI de vendas e painel de clientes inadimplentes, usando dados fictícios.",
+  alternates: {
+    canonical: "/demo/hub-comercial",
+  },
 }
 
 export default function HubComercialLayout({ children }: { children: React.ReactNode }) {

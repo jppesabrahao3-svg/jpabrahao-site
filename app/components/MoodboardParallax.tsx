@@ -231,15 +231,15 @@ export default function MoodboardParallax({ items, colors: C }: { items: Moodboa
             >
               {item.type === "image" ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={item.src} alt="Exemplo de arte para redes sociais criada com IA" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                <img src={item.src} alt={`Post criado com IA para a Pro Water, exemplo ${i + 1}`} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
               ) : (
-                <video src={item.src} muted loop autoPlay playsInline style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                <video src={item.src} muted loop autoPlay playsInline aria-label={`Vídeo criado com IA para a Pro Water, exemplo ${i + 1}`} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
               )}
             </button>
           ))}
         </div>
         {active && (
-          <Lightbox item={active} colors={C} onClose={() => setLightboxIndex(null)} />
+          <Lightbox item={active} index={lightboxIndex ?? 0} colors={C} onClose={() => setLightboxIndex(null)} />
         )}
       </>
     )
@@ -279,9 +279,9 @@ export default function MoodboardParallax({ items, colors: C }: { items: Moodboa
               >
                 {item.type === "image" ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={item.src} alt="Exemplo de arte para redes sociais criada com IA" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                  <img src={item.src} alt={`Post criado com IA para a Pro Water, exemplo ${i + 1}`} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
                 ) : (
-                  <video src={item.src} muted loop autoPlay playsInline style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                  <video src={item.src} muted loop autoPlay playsInline aria-label={`Vídeo criado com IA para a Pro Water, exemplo ${i + 1}`} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
                 )}
               </button>
             </div>
@@ -290,13 +290,13 @@ export default function MoodboardParallax({ items, colors: C }: { items: Moodboa
       </div>
 
       {active && (
-        <Lightbox item={active} colors={C} onClose={() => setLightboxIndex(null)} />
+        <Lightbox item={active} index={lightboxIndex ?? 0} colors={C} onClose={() => setLightboxIndex(null)} />
       )}
     </>
   )
 }
 
-function Lightbox({ item, colors: C, onClose }: { item: MoodboardItem; colors: Colors; onClose: () => void }) {
+function Lightbox({ item, index, colors: C, onClose }: { item: MoodboardItem; index: number; colors: Colors; onClose: () => void }) {
   return (
     <div
       className="modal-overlay"
@@ -318,9 +318,9 @@ function Lightbox({ item, colors: C, onClose }: { item: MoodboardItem; colors: C
         </button>
         {item.type === "image" ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={item.src} alt="Exemplo de arte para redes sociais criada com IA" style={{ display: "block", width: "100%", maxHeight: "88vh", objectFit: "contain", borderRadius: 10, border: `1px solid ${C.border}` }} />
+          <img src={item.src} alt={`Post criado com IA para a Pro Water, exemplo ${index + 1}, em tela cheia`} style={{ display: "block", width: "100%", maxHeight: "88vh", objectFit: "contain", borderRadius: 10, border: `1px solid ${C.border}` }} />
         ) : (
-          <video src={item.src} controls autoPlay loop playsInline style={{ display: "block", width: "100%", maxHeight: "88vh", borderRadius: 10, border: `1px solid ${C.border}` }} />
+          <video src={item.src} controls autoPlay loop playsInline aria-label={`Vídeo criado com IA para a Pro Water, exemplo ${index + 1}, em tela cheia`} style={{ display: "block", width: "100%", maxHeight: "88vh", borderRadius: 10, border: `1px solid ${C.border}` }} />
         )}
       </div>
     </div>

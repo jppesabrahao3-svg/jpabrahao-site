@@ -49,8 +49,8 @@ export default function GestorDemoPainel({ data, ctx }: { data: GestorPessoalDem
   return (
     <div className="space-y-8">
       <div>
-        <p className="text-xs uppercase tracking-widest text-[#8DA396]">Painel</p>
-        <h1 className="text-2xl font-semibold mt-1">Agosto 2026</h1>
+        <h1 className="text-xs uppercase tracking-widest text-[#8DA396]">Painel</h1>
+        <p className="text-2xl font-semibold mt-1">Agosto 2026</p>
       </div>
 
       {/* RESUMO DO MES */}

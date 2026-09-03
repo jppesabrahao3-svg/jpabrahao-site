@@ -7,6 +7,9 @@ import GestorDemoFluxoCaixa from "../../../components/GestorDemoFluxoCaixa"
 export const metadata: Metadata = {
   title: "Fluxo de Caixa do Gestor",
   description: "Ranking de despesas por grupo e despesas futuras em uma demonstração do Gestor com dados fictícios.",
+  alternates: {
+    canonical: "/demo/gestor/fluxo-caixa",
+  },
 }
 
 function brl(valor: number) {

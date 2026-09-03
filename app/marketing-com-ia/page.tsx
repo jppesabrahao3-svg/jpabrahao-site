@@ -6,6 +6,9 @@ import MarketingComIASection from "../components/MarketingComIASection"
 export const metadata: Metadata = {
   title: "Marketing com IA: resultados",
   description: "Veja como planejamento, arte e legenda gerados com inteligência artificial, mais relatório de métrica, substituem uma agência de marketing tradicional.",
+  alternates: {
+    canonical: "/marketing-com-ia",
+  },
 }
 
 const C = {

@@ -71,12 +71,26 @@ const WA = "https://wa.me/5521991711204?text=Ol%C3%A1%2C+JP%21+Vi+seu+site+e+que
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  name: "JP Abrahao",
+  "@id": "https://jpabrahao.com.br/#business",
+  name: "JP Abrahão",
   url: "https://jpabrahao.com.br",
   description: "Sistemas internos sob medida, automação de processos com IA e marketing com IA para pequenas e médias empresas.",
+  telephone: "+5521991711204",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Rio de Janeiro",
+    addressRegion: "RJ",
+    addressCountry: "BR",
+  },
   areaServed: {
     "@type": "City",
     name: "Rio de Janeiro",
+  },
+  founder: {
+    "@type": "Person",
+    name: "JP Abrahão",
+    jobTitle: "Economista",
+    alumniOf: "Universidade Federal Fluminense",
   },
   hasOfferCatalog: {
     "@type": "OfferCatalog",

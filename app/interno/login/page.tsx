@@ -1,3 +1,5 @@
+import type { Metadata } from "next"
+
 const C = {
   bg:         "#0C1009",
   card:       "#172014",
@@ -8,6 +10,12 @@ const C = {
   red:        "#C2544A",
   redFaint:   "#2A1714",
 } as const
+
+export const metadata: Metadata = {
+  title: "Área interna",
+  description: "Acesso restrito, não público.",
+  robots: { index: false, follow: false },
+}
 
 export default async function InternoLoginPage({
   searchParams,

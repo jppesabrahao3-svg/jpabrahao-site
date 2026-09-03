@@ -5,6 +5,9 @@ import GestorDemoPainel from "../../../components/GestorDemoPainel"
 export const metadata: Metadata = {
   title: "Painel do Gestor",
   description: "Entradas, saídas, conciliação bancária e termômetro do teto MEI em uma demonstração do Gestor com dados fictícios.",
+  alternates: {
+    canonical: "/demo/gestor/painel",
+  },
 }
 
 export default async function PainelDemoPage({
