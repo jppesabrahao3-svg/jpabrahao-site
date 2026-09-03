@@ -401,13 +401,25 @@ function BiVendasModal({ onClose }: { onClose: () => void }) {
             {/* GRAFICO + RANKING DE PRODUTOS */}
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               <div style={{ backgroundColor: LOOKER.panel, border: `1px solid ${LOOKER.border}`, borderRadius: 4, padding: "14px 12px 6px" }}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: LOOKER.ink, marginBottom: 8 }}>Meta x Faturamento</div>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: LOOKER.ink }}>Meta x Faturamento</div>
+                  <div style={{ display: "flex", gap: 10 }}>
+                    <span style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 10, color: LOOKER.inkMuted }}>
+                      <span style={{ width: 7, height: 7, borderRadius: 2, backgroundColor: LOOKER.blue, display: "inline-block" }} />
+                      Meta
+                    </span>
+                    <span style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 10, color: LOOKER.inkMuted }}>
+                      <span style={{ width: 7, height: 7, borderRadius: 2, backgroundColor: LOOKER.gold, display: "inline-block" }} />
+                      Faturamento
+                    </span>
+                  </div>
+                </div>
                 <ResponsiveContainer width="100%" height={230}>
                   <BarChart data={d.graficoMetaFaturamento} margin={{ top: 4, right: 4, left: -22, bottom: 0 }}>
-                    <CartesianGrid stroke={LOOKER.border} vertical={false} />
+                    <CartesianGrid stroke={LOOKER.border} strokeDasharray="3 3" vertical={false} />
                     <XAxis dataKey="mes" stroke={LOOKER.inkMuted} fontSize={10} tickLine={false} axisLine={{ stroke: LOOKER.border }} />
                     <YAxis stroke={LOOKER.inkMuted} fontSize={10} tickLine={false} axisLine={false} tickFormatter={(v) => `${Math.round(v / 1000)}k`} domain={[0, teto]} />
-                    <Tooltip content={<ChartTooltip />} />
+                    <Tooltip content={<ChartTooltip />} cursor={{ fill: LOOKER.headBg }} />
                     <Bar dataKey="meta" name="Meta" fill={LOOKER.blue} radius={[2, 2, 0, 0]} />
                     <Bar dataKey="faturamento" name="Faturamento" fill={LOOKER.gold} radius={[2, 2, 0, 0]} />
                   </BarChart>
@@ -424,7 +436,7 @@ function BiVendasModal({ onClose }: { onClose: () => void }) {
                         <span style={{ fontWeight: 600 }}>{brl(p.valor)}</span>
                       </div>
                       <div style={{ height: 8, backgroundColor: LOOKER.headBg, borderRadius: 3, overflow: "hidden" }}>
-                        <div style={{ height: "100%", width: `${(p.valor / maxProduto) * 100}%`, backgroundColor: LOOKER.blue, borderRadius: 3 }} />
+                        <div style={{ height: "100%", width: `${(p.valor / maxProduto) * 100}%`, backgroundColor: LOOKER.blue, borderRadius: 3, transition: "width 0.4s ease" }} />
                       </div>
                     </div>
                   ))}

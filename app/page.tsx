@@ -2,6 +2,7 @@
 import CasesSection from "./components/CasesSection"
 import AgendarModal from "./components/AgendarModal"
 import ServicesSection from "./components/ServicesSection"
+import Logo from "./components/Logo"
 
 const C = {
   bg:         "#0C1009",
@@ -122,7 +123,7 @@ export default function Page() {
       {/* NAV */}
       <nav style={{ position: "sticky", top: 0, zIndex: 50, backgroundColor: C.bg + "F0", backdropFilter: "blur(14px)", borderBottom: `1px solid ${C.border}` }}>
         <div style={{ ...wrap, height: 64, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <span style={{ ...displayFont, fontWeight: 600, fontSize: 20, color: C.green, letterSpacing: "-0.01em" }}>JP Abrahao</span>
+          <Logo />
           <AgendarModal style={{ ...titleFont, backgroundColor: C.green, color: C.bg, padding: "9px 22px", borderRadius: 6, fontWeight: 700, fontSize: 14, border: "none", cursor: "pointer" }}>
             Agendar diagnóstico
           </AgendarModal>
@@ -258,7 +259,7 @@ export default function Page() {
       {/* FOOTER */}
       <footer style={{ borderTop: `1px solid ${C.border}`, backgroundColor: C.bg }}>
         <div style={{ ...wrap, padding: "24px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap" as const, gap: 12 }}>
-          <span style={{ ...displayFont, fontWeight: 600, fontSize: 16, color: C.green }}>JP Abrahao</span>
+          <Logo />
           <span style={{ fontSize: 13, color: C.muted }}>© 2026 · jpabrahao.com.br</span>
         </div>
       </footer>

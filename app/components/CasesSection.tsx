@@ -300,6 +300,7 @@ function AutomacaoComercialDemo({ colors: C }: { colors: Colors }) {
                 <div key={dia} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 5, flex: 1 }}>
                   <div style={{ display: "flex", alignItems: "flex-end", gap: 3, height: BARRA_ALTURA_MAX }}>
                     <div
+                      title={`${HORAS_ANTES_DIA}h antes`}
                       style={{
                         width: 8, borderRadius: "3px 3px 0 0", backgroundColor: AMBER,
                         height: weekVisible ? BARRA_ALTURA_MAX : 0,
@@ -307,6 +308,7 @@ function AutomacaoComercialDemo({ colors: C }: { colors: Colors }) {
                       }}
                     />
                     <div
+                      title={`${HORAS_DEPOIS_DIA}h depois`}
                       style={{
                         width: 8, borderRadius: "3px 3px 0 0", backgroundColor: C.green,
                         height: weekVisible ? (HORAS_DEPOIS_DIA / HORAS_ANTES_DIA) * BARRA_ALTURA_MAX : 0,

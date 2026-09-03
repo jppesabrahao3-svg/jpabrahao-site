@@ -107,6 +107,12 @@ body {
   .automacao-secundario { grid-template-columns: 1fr 1fr; align-items: start; }
 }
 
+.logo-name { font-size: 17px; }
+
+@media (min-width: 640px) {
+  .logo-name { font-size: 20px; }
+}
+
 .automacao-modal-scroll { scrollbar-width: thin; scrollbar-color: #2FA36B transparent; }
 .automacao-modal-scroll::-webkit-scrollbar { width: 6px; }
 .automacao-modal-scroll::-webkit-scrollbar-track { background: transparent; }

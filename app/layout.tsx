@@ -1,5 +1,5 @@
 ﻿import type { Metadata } from "next"
-import { Inter, Fraunces } from "next/font/google"
+import { Inter, Fraunces, Sora } from "next/font/google"
 import "./globals.css"
 import GoogleAnalytics from "./components/GoogleAnalytics"
 import MicrosoftClarity from "./components/MicrosoftClarity"
@@ -10,6 +10,12 @@ const fraunces = Fraunces({
   subsets: ["latin"],
   style: ["normal", "italic"],
   variable: "--font-fraunces",
+  display: "swap",
+})
+const sora = Sora({
+  subsets: ["latin"],
+  weight: ["300", "700"],
+  variable: "--font-sora",
   display: "swap",
 })
 
@@ -40,7 +46,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={`${inter.variable} ${fraunces.variable}`} data-scroll-behavior="smooth">
+    <html lang="pt-BR" className={`${inter.variable} ${fraunces.variable} ${sora.variable}`} data-scroll-behavior="smooth">
       <body>
         {children}
         <GoogleAnalytics />

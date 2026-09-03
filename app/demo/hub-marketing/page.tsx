@@ -125,10 +125,23 @@ function KpiCard({ label, valor }: { label: string; valor: number }) {
 function ChartTooltip({ active, payload, label }: { active?: boolean; payload?: { name: string; value: number; color: string }[]; label?: string }) {
   if (!active || !payload?.length) return null
   return (
-    <div style={{ backgroundColor: C.card, border: `1px solid ${C.border}`, borderRadius: 6, padding: "8px 12px", fontSize: 12 }}>
+    <div style={{ backgroundColor: C.card, border: `1px solid ${C.border}`, borderRadius: 6, padding: "8px 12px", fontSize: 12, boxShadow: "0 8px 20px rgba(0,0,0,0.35)" }}>
       <div style={{ color: C.muted, marginBottom: 4 }}>{label}</div>
       {payload.map((p) => (
         <div key={p.name} style={{ color: p.color, fontWeight: 600 }}>{p.name}: {formatNum(p.value)}</div>
+      ))}
+    </div>
+  )
+}
+
+function ChartLegend({ items }: { items: { color: string; label: string }[] }) {
+  return (
+    <div style={{ display: "flex", gap: 14, marginBottom: 10 }}>
+      {items.map((it) => (
+        <span key={it.label} style={{ display: "flex", alignItems: "center", gap: 5, fontSize: 11, color: C.muted }}>
+          <span style={{ width: 7, height: 7, borderRadius: 2, backgroundColor: it.color, display: "inline-block" }} />
+          {it.label}
+        </span>
       ))}
     </div>
   )
@@ -203,14 +216,15 @@ function DashboardTab() {
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 16 }}>
         <div style={cardStyle}>
           <h2 style={sectionTitle}>Impressões x alcance</h2>
+          <ChartLegend items={[{ color: C.green, label: "Impressões" }, { color: C.amber, label: "Alcance" }]} />
           <ResponsiveContainer width="100%" height={220}>
             <LineChart data={graficoImpressoesAlcance} margin={{ top: 4, right: 8, left: -20, bottom: 0 }}>
-              <CartesianGrid stroke={C.border} vertical={false} />
+              <CartesianGrid stroke={C.border} strokeDasharray="3 3" vertical={false} />
               <XAxis dataKey="mes" stroke={C.muted} fontSize={11} tickLine={false} axisLine={{ stroke: C.border }} />
               <YAxis stroke={C.muted} fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${Math.round(v / 1000)}k`} />
-              <Tooltip content={<ChartTooltip />} />
-              <Line type="monotone" dataKey="impressoes" name="Impressões" stroke={C.green} strokeWidth={2} dot={false} />
-              <Line type="monotone" dataKey="alcance" name="Alcance" stroke={C.amber} strokeWidth={2} dot={false} />
+              <Tooltip content={<ChartTooltip />} cursor={{ stroke: C.border, strokeWidth: 1 }} />
+              <Line type="monotone" dataKey="impressoes" name="Impressões" stroke={C.green} strokeWidth={2} dot={false} activeDot={{ r: 4, fill: C.green, stroke: C.card, strokeWidth: 2 }} />
+              <Line type="monotone" dataKey="alcance" name="Alcance" stroke={C.amber} strokeWidth={2} dot={false} activeDot={{ r: 4, fill: C.amber, stroke: C.card, strokeWidth: 2 }} />
             </LineChart>
           </ResponsiveContainer>
         </div>
@@ -225,11 +239,11 @@ function DashboardTab() {
                   <stop offset="100%" stopColor={C.green} stopOpacity={0.02} />
                 </linearGradient>
               </defs>
-              <CartesianGrid stroke={C.border} vertical={false} />
+              <CartesianGrid stroke={C.border} strokeDasharray="3 3" vertical={false} />
               <XAxis dataKey="mes" stroke={C.muted} fontSize={11} tickLine={false} axisLine={{ stroke: C.border }} />
               <YAxis stroke={C.muted} fontSize={11} tickLine={false} axisLine={false} domain={["dataMin - 300", "dataMax + 300"]} tickFormatter={(v) => `${Math.round(v / 1000)}k`} />
-              <Tooltip content={<ChartTooltip />} />
-              <Area type="monotone" dataKey="seguidores" name="Seguidores" stroke={C.green} strokeWidth={2} fill="url(#seguidoresFill)" />
+              <Tooltip content={<ChartTooltip />} cursor={{ stroke: C.border, strokeWidth: 1 }} />
+              <Area type="monotone" dataKey="seguidores" name="Seguidores" stroke={C.green} strokeWidth={2} fill="url(#seguidoresFill)" activeDot={{ r: 4, fill: C.green, stroke: C.card, strokeWidth: 2 }} />
             </AreaChart>
           </ResponsiveContainer>
         </div>
