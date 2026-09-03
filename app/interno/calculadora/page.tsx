@@ -20,7 +20,7 @@ type Service = "sistemas" | "automacao" | "marketing" | "site"
 
 const SERVICES: { key: Service; label: string }[] = [
   { key: "sistemas",  label: "Sistemas internos" },
-  { key: "automacao", label: "Automacao com IA" },
+  { key: "automacao", label: "Automação com IA" },
   { key: "marketing", label: "Marketing com IA" },
   { key: "site",      label: "Site institucional" },
 ]
@@ -31,9 +31,10 @@ const PRESETS: Record<"sistemas" | "automacao" | "site", { simples: number; medi
   automacao: { simples: 27, medio: 47, complexo: 70 },
 }
 
-const RETENTOR_SUGESTAO: Record<"sistemas" | "automacao", number> = {
-  sistemas: 400,
-  automacao: 300,
+const RETENTOR_CONFIG: Record<"sistemas" | "automacao" | "site", { sugestao: number; toggleLabel: string; campoLabel: string; resultLabel: string }> = {
+  sistemas:  { sugestao: 400, toggleLabel: "Incluir retentor mensal de ajuste?", campoLabel: "Valor do retentor mensal", resultLabel: "retentor mensal de" },
+  automacao: { sugestao: 300, toggleLabel: "Incluir retentor mensal de ajuste?", campoLabel: "Valor do retentor mensal", resultLabel: "retentor mensal de" },
+  site:      { sugestao: 150, toggleLabel: "Incluir mensalidade de manutenção?", campoLabel: "Valor da mensalidade", resultLabel: "mensalidade de" },
 }
 
 function formatBRL(v: number) {
@@ -68,7 +69,7 @@ function Toggle({ checked, onChange, label }: { checked: boolean; onChange: (v: 
 
 export default function CalculadoraInternaPage() {
   const font = { fontFamily: "var(--font-inter), system-ui, sans-serif" }
-  const syne = { fontFamily: "var(--font-syne), sans-serif" }
+  const titleFont = { fontFamily: "var(--font-inter), sans-serif" }
 
   const [service, setService] = useState<Service>("sistemas")
   const [taxaBase, setTaxaBase] = useState(180)
@@ -78,20 +79,49 @@ export default function CalculadoraInternaPage() {
   const [valorRetentor, setValorRetentor] = useState(400)
   const [posts, setPosts] = useState(8)
 
+  const [descricaoIA, setDescricaoIA] = useState("")
+  const [refinandoIA, setRefinandoIA] = useState(false)
+  const [erroIA, setErroIA] = useState("")
+  const [sugestaoIA, setSugestaoIA] = useState<{ horas: number; complexidade: string; justificativa: string } | null>(null)
+
   useEffect(() => {
     if (service === "sistemas" || service === "automacao" || service === "site") {
       setHoras(PRESETS[service].medio)
+      setValorRetentor(RETENTOR_CONFIG[service].sugestao)
     }
-    if (service === "sistemas" || service === "automacao") {
-      setValorRetentor(RETENTOR_SUGESTAO[service])
-    }
-    if (service === "site" || service === "marketing") {
+    if (service === "marketing") {
       setRetentor(false)
     }
+    setSugestaoIA(null)
+    setErroIA("")
   }, [service])
 
+  async function refinarComIA() {
+    if (!descricaoIA.trim() || refinandoIA) return
+    setRefinandoIA(true)
+    setErroIA("")
+    try {
+      const servicoLabel = SERVICES.find((s) => s.key === service)?.label ?? service
+      const res = await fetch("/api/refinar-orcamento", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ texto: descricaoIA, servico: servicoLabel }),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        throw new Error(data?.error || "Não foi possível refinar a estimativa.")
+      }
+      setHoras(data.horasSugeridas)
+      setSugestaoIA({ horas: data.horasSugeridas, complexidade: data.complexidade, justificativa: data.justificativa })
+    } catch (err) {
+      setErroIA(err instanceof Error ? err.message : "Não foi possível refinar a estimativa.")
+    } finally {
+      setRefinandoIA(false)
+    }
+  }
+
   const isMarketing = service === "marketing"
-  const showRetentor = service === "sistemas" || service === "automacao"
+  const showRetentor = service === "sistemas" || service === "automacao" || service === "site"
 
   const precoBase = horas * taxaBase
   const precoFinal = urgente ? precoBase * 1.2 : precoBase
@@ -109,19 +139,19 @@ export default function CalculadoraInternaPage() {
       <div style={{ maxWidth: 640, margin: "0 auto" }}>
 
         <div style={{ display: "inline-flex", alignItems: "center", gap: 8, backgroundColor: C.amberFaint, border: `1px solid ${C.amber}`, color: C.amber, borderRadius: 999, padding: "8px 16px", fontSize: 13, fontWeight: 600, marginBottom: 32 }}>
-          ⚠ Calculadora interna, uso pessoal, nao e publica
+          ⚠ Calculadora interna, uso pessoal, não é pública
         </div>
 
         <div style={{ backgroundColor: C.card, border: `1px solid ${C.border}`, borderRadius: 14, padding: "36px 32px", display: "flex", flexDirection: "column", gap: 32 }}>
 
           <div>
-            <h1 style={{ ...syne, fontWeight: 800, fontSize: 26, letterSpacing: "-0.02em", marginBottom: 8 }}>Calculadora de orcamento</h1>
-            <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.6 }}>Estimativa rapida por servico. Nao grava nada, so calcula na hora.</p>
+            <h1 style={{ ...titleFont, fontWeight: 700, fontSize: 26, letterSpacing: "-0.02em", marginBottom: 8 }}>Calculadora de orçamento</h1>
+            <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.6 }}>Estimativa rápida por serviço. Não grava nada, só calcula na hora.</p>
           </div>
 
-          {/* SERVICO */}
+          {/* SERVIÇO */}
           <div>
-            <span style={label}>Servico</span>
+            <span style={label}>Serviço</span>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 8 }}>
               {SERVICES.map((s) => (
                 <button
@@ -129,7 +159,7 @@ export default function CalculadoraInternaPage() {
                   type="button"
                   onClick={() => setService(s.key)}
                   style={{
-                    ...syne, fontSize: 13, fontWeight: 700, padding: "12px 10px", borderRadius: 8, cursor: "pointer",
+                    ...titleFont, fontSize: 13, fontWeight: 700, padding: "12px 10px", borderRadius: 8, cursor: "pointer",
                     border: `1px solid ${service === s.key ? C.green : C.border}`,
                     backgroundColor: service === s.key ? C.greenFaint : C.bg,
                     color: service === s.key ? C.green : C.muted,
@@ -159,11 +189,42 @@ export default function CalculadoraInternaPage() {
 
           {!isMarketing && (
             <>
+              {/* REFINAMENTO VIA IA */}
+              <div>
+                <span style={label}>Descreva o que o cliente pediu (cole aqui o resumo do diagnóstico)</span>
+                <textarea
+                  value={descricaoIA}
+                  onChange={(e) => setDescricaoIA(e.target.value)}
+                  rows={4}
+                  placeholder="Ex: cliente quer um sistema com dashboard, cadastro de produtos e integração com WhatsApp..."
+                  style={{
+                    width: "100%", ...fieldBox, padding: "10px 14px", color: C.text, fontSize: 14,
+                    outline: "none", resize: "vertical" as const, fontFamily: "inherit", marginBottom: 10,
+                  }}
+                />
+                <button
+                  type="button"
+                  onClick={refinarComIA}
+                  disabled={!descricaoIA.trim() || refinandoIA}
+                  style={{
+                    ...titleFont, fontSize: 13, fontWeight: 700, padding: "10px 16px", borderRadius: 8,
+                    cursor: !descricaoIA.trim() || refinandoIA ? "not-allowed" : "pointer",
+                    border: `1px solid ${C.green}`, backgroundColor: C.greenFaint, color: C.green,
+                    opacity: !descricaoIA.trim() || refinandoIA ? 0.6 : 1,
+                  }}
+                >
+                  {refinandoIA ? "Refinando..." : "Refinar estimativa com IA"}
+                </button>
+                {erroIA && (
+                  <div style={{ fontSize: 12.5, color: "#C2544A", marginTop: 10, lineHeight: 1.5 }}>{erroIA}</div>
+                )}
+              </div>
+
               {/* HORAS */}
               <div>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 10 }}>
                   <span style={{ ...label, marginBottom: 0 }}>Horas estimadas</span>
-                  <span style={{ ...syne, color: C.green, fontWeight: 700, fontSize: 16 }}>{horas}h</span>
+                  <span style={{ ...titleFont, color: C.green, fontWeight: 700, fontSize: 16 }}>{horas}h</span>
                 </div>
                 <input
                   type="range"
@@ -189,18 +250,23 @@ export default function CalculadoraInternaPage() {
                     </button>
                   ))}
                 </div>
+                {sugestaoIA && (
+                  <div style={{ fontSize: 12.5, color: C.muted, marginTop: 10, lineHeight: 1.5 }}>
+                    <span style={{ color: C.green, fontWeight: 600 }}>Sugestão da IA ({sugestaoIA.complexidade}):</span> {sugestaoIA.justificativa}
+                  </div>
+                )}
               </div>
 
               {/* URGENTE */}
-              <Toggle checked={urgente} onChange={setUrgente} label="Urgente? (+20% no preco final)" />
+              <Toggle checked={urgente} onChange={setUrgente} label="Urgente? (+20% no preço final)" />
 
               {/* RETENTOR */}
               {showRetentor && (
                 <div>
-                  <Toggle checked={retentor} onChange={setRetentor} label="Incluir retentor mensal de ajuste?" />
+                  <Toggle checked={retentor} onChange={setRetentor} label={RETENTOR_CONFIG[service as "sistemas" | "automacao" | "site"].toggleLabel} />
                   {retentor && (
                     <div style={{ marginTop: 14 }}>
-                      <span style={label}>Valor do retentor mensal</span>
+                      <span style={label}>{RETENTOR_CONFIG[service as "sistemas" | "automacao" | "site"].campoLabel}</span>
                       <div style={{ ...fieldBox, display: "flex", alignItems: "center", gap: 6, padding: "10px 14px" }}>
                         <span style={{ color: C.muted, fontSize: 14 }}>R$</span>
                         <input
@@ -222,8 +288,8 @@ export default function CalculadoraInternaPage() {
           {isMarketing && (
             <div>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 10 }}>
-                <span style={{ ...label, marginBottom: 0 }}>Posts por mes</span>
-                <span style={{ ...syne, color: C.green, fontWeight: 700, fontSize: 16 }}>{posts}</span>
+                <span style={{ ...label, marginBottom: 0 }}>Posts por mês</span>
+                <span style={{ ...titleFont, color: C.green, fontWeight: 700, fontSize: 16 }}>{posts}</span>
               </div>
               <input
                 type="range"
@@ -242,34 +308,34 @@ export default function CalculadoraInternaPage() {
             {!isMarketing ? (
               <>
                 <div>
-                  <div style={{ fontSize: 12, color: C.muted, textTransform: "uppercase" as const, letterSpacing: "0.06em", fontWeight: 600, marginBottom: 6 }}>Preco estimado</div>
-                  <div style={{ ...syne, fontWeight: 800, fontSize: "clamp(26px, 4vw, 36px)", color: C.text, letterSpacing: "-0.02em", lineHeight: 1.1 }}>
+                  <div style={{ fontSize: 12, color: C.muted, textTransform: "uppercase" as const, letterSpacing: "0.06em", fontWeight: 600, marginBottom: 6 }}>Preço estimado</div>
+                  <div style={{ ...titleFont, fontWeight: 700, fontSize: "clamp(26px, 4vw, 36px)", color: C.text, letterSpacing: "-0.02em", lineHeight: 1.1 }}>
                     {formatBRL(precoBase)} <span style={{ color: C.muted, fontWeight: 500, fontSize: "0.55em" }}>a</span> {formatBRL(precoTeto)}
                   </div>
                 </div>
 
                 {retentor && showRetentor && (
                   <div style={{ fontSize: 15, color: C.text }}>
-                    + retentor mensal de <span style={{ color: C.green, fontWeight: 700 }}>{formatBRL(valorRetentor)}</span>
+                    + {RETENTOR_CONFIG[service as "sistemas" | "automacao" | "site"].resultLabel} <span style={{ color: C.green, fontWeight: 700 }}>{formatBRL(valorRetentor)}</span>
                   </div>
                 )}
 
                 <div>
                   <div style={{ fontSize: 12, color: C.muted, textTransform: "uppercase" as const, letterSpacing: "0.06em", fontWeight: 600, marginBottom: 6 }}>Prazo estimado</div>
-                  <div style={{ ...syne, fontWeight: 800, fontSize: 24, color: C.green }}>{prazoSemanas} semana{prazoSemanas > 1 ? "s" : ""}</div>
+                  <div style={{ ...titleFont, fontWeight: 700, fontSize: 24, color: C.green }}>{prazoSemanas} semana{prazoSemanas > 1 ? "s" : ""}</div>
                 </div>
               </>
             ) : (
               <>
                 <div>
                   <div style={{ fontSize: 12, color: C.muted, textTransform: "uppercase" as const, letterSpacing: "0.06em", fontWeight: 600, marginBottom: 6 }}>Setup</div>
-                  <div style={{ ...syne, fontWeight: 800, fontSize: "clamp(26px, 4vw, 36px)", color: C.text, letterSpacing: "-0.02em" }}>{formatBRL(setup)}</div>
+                  <div style={{ ...titleFont, fontWeight: 700, fontSize: "clamp(26px, 4vw, 36px)", color: C.text, letterSpacing: "-0.02em" }}>{formatBRL(setup)}</div>
                 </div>
                 <div>
                   <div style={{ fontSize: 12, color: C.muted, textTransform: "uppercase" as const, letterSpacing: "0.06em", fontWeight: 600, marginBottom: 6 }}>Mensalidade</div>
-                  <div style={{ ...syne, fontWeight: 800, fontSize: "clamp(26px, 4vw, 36px)", color: C.green, letterSpacing: "-0.02em" }}>{formatBRL(mensalidade)}</div>
+                  <div style={{ ...titleFont, fontWeight: 700, fontSize: "clamp(26px, 4vw, 36px)", color: C.green, letterSpacing: "-0.02em" }}>{formatBRL(mensalidade)}</div>
                 </div>
-                <div style={{ fontSize: 15, color: C.muted, lineHeight: 1.7 }}>Prazo de inicio: recorrente, a partir da proxima semana util.</div>
+                <div style={{ fontSize: 15, color: C.muted, lineHeight: 1.7 }}>Prazo de início: recorrente, a partir da próxima semana útil.</div>
               </>
             )}
           </div>

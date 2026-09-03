@@ -99,8 +99,8 @@ export default function MarketingMetrics({ colors: C, onHeightChange }: { colors
             >
               <div
                 style={{
-                  fontFamily: "var(--font-syne), sans-serif",
-                  fontWeight: 800,
+                  fontFamily: "var(--font-inter), sans-serif",
+                  fontWeight: 700,
                   color: C.green,
                   letterSpacing: "-0.02em",
                   lineHeight: 1,

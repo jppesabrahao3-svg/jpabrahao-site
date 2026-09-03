@@ -38,13 +38,13 @@ export const marketHubDemoData: MarketingHubDemoData = {
       { label: "Parcerias Ativas", valor: 6 },
     ],
     proximosPrazos: [
-      { titulo: "Lancamento linha verao", data: "15 dez" },
-      { titulo: "Video institucional", data: "20 dez" },
+      { titulo: "Lançamento linha verão", data: "15 dez" },
+      { titulo: "Vídeo institucional", data: "20 dez" },
     ],
     orcamento: { gasto: 8400, total: 15000 },
     campanhasRecentes: [
       { nome: "Parceria Loja Y", gasto: 3000, total: 5000, status: "Em andamento" },
-      { nome: "Campanha Dia das Maes", gasto: 4000, total: 4000, status: "Concluida" },
+      { nome: "Campanha Dia das Mães", gasto: 4000, total: 4000, status: "Concluída" },
     ],
     graficoImpressoesAlcance: [
       { mes: "Jan", impressoes: 180000, alcance: 95000 },
@@ -67,25 +67,25 @@ export const marketHubDemoData: MarketingHubDemoData = {
   },
 
   tarefas: {
-    colunas: ["Backlog", "A Fazer", "Em Progresso", "Revisao", "Concluido"],
+    colunas: ["Backlog", "A Fazer", "Em Progresso", "Revisão", "Concluído"],
     cards: [
       { id: "1", titulo: "Post dia do cliente", coluna: "Backlog", tag: "Feed" },
       { id: "2", titulo: "Reel bastidores", coluna: "Backlog", tag: "Video" },
       { id: "3", titulo: "Carrossel comparativo produtos", coluna: "A Fazer", tag: "Feed" },
-      { id: "4", titulo: "Banner promocao verao", coluna: "A Fazer", tag: "Banner" },
+      { id: "4", titulo: "Banner promoção verão", coluna: "A Fazer", tag: "Banner" },
       { id: "5", titulo: "Legenda campanha parceria", coluna: "A Fazer", tag: "Briefing" },
-      { id: "6", titulo: "Video institucional", coluna: "Em Progresso", tag: "Video" },
-      { id: "7", titulo: "Post lancamento linha nova", coluna: "Revisao", tag: "Feed" },
-      { id: "8", titulo: "Post boas-vindas seguidores", coluna: "Concluido", tag: "Feed" },
+      { id: "6", titulo: "Vídeo institucional", coluna: "Em Progresso", tag: "Video" },
+      { id: "7", titulo: "Post lançamento linha nova", coluna: "Revisão", tag: "Feed" },
+      { id: "8", titulo: "Post boas-vindas seguidores", coluna: "Concluído", tag: "Feed" },
     ],
   },
 
   parcerias: {
-    colunas: ["Prospeccao", "Negociacao", "Ativo", "Pausado"],
+    colunas: ["Prospecção", "Negociação", "Ativo", "Pausado"],
     cards: [
-      { id: "1", handle: "@vidapratica.oficial", seguidores: 150000, coluna: "Prospeccao" },
-      { id: "2", handle: "@estilocasa.br", seguidores: 90000, coluna: "Prospeccao" },
-      { id: "3", handle: "@beleza.consciente", seguidores: 60000, contrato: 500, custoView: 0.08, coluna: "Negociacao" },
+      { id: "1", handle: "@vidapratica.oficial", seguidores: 150000, coluna: "Prospecção" },
+      { id: "2", handle: "@estilocasa.br", seguidores: 90000, coluna: "Prospecção" },
+      { id: "3", handle: "@beleza.consciente", seguidores: 60000, contrato: 500, custoView: 0.08, coluna: "Negociação" },
       { id: "4", handle: "@rotina.pratica", seguidores: 320000, contrato: 1800, custoView: 0.015, coluna: "Ativo" },
       { id: "5", handle: "@casa.organizada", seguidores: 180000, contrato: 700, custoView: 0.02, coluna: "Ativo" },
       { id: "6", handle: "@lifestyle.simples", seguidores: 95000, contrato: 400, custoView: 0.03, coluna: "Pausado" },
@@ -95,7 +95,7 @@ export const marketHubDemoData: MarketingHubDemoData = {
   calendario: {
     mes: "Setembro 2026",
     eventos: [
-      { dia: 3, titulo: "Post lancamento" },
+      { dia: 3, titulo: "Post lançamento" },
       { dia: 10, titulo: "Reel parceria" },
       { dia: 17, titulo: "Carrossel comparativo" },
       { dia: 24, titulo: "Campanha Setembro" },
@@ -143,33 +143,33 @@ export const gestorPessoalDemoData: GestorPessoalDemoData = {
   despesasPorGrupo: [
     { grupo: "Moradia", valor: 1800, categorias: [
       { nome: "Aluguel", valor: 1400 },
-      { nome: "Condominio", valor: 400 },
+      { nome: "Condomínio", valor: 400 },
     ]},
-    { grupo: "Alimentacao", valor: 1200, categorias: [
+    { grupo: "Alimentação", valor: 1200, categorias: [
       { nome: "Mercado", valor: 700 },
       { nome: "Restaurante", valor: 500 },
     ]},
     { grupo: "Transporte", valor: 650, categorias: [
-      { nome: "Combustivel", valor: 400 },
+      { nome: "Combustível", valor: 400 },
       { nome: "App de transporte", valor: 250 },
     ]},
     { grupo: "Assinaturas", valor: 210, categorias: [
       { nome: "Streaming", valor: 90 },
       { nome: "Academia", valor: 120 },
     ]},
-    { grupo: "Saude", valor: 480, categorias: [
-      { nome: "Plano de saude", valor: 380 },
-      { nome: "Farmacia", valor: 100 },
+    { grupo: "Saúde", valor: 480, categorias: [
+      { nome: "Plano de saúde", valor: 380 },
+      { nome: "Farmácia", valor: 100 },
     ]},
     { grupo: "Lazer", valor: 390, categorias: [
-      { nome: "Saidas", valor: 250 },
+      { nome: "Saídas", valor: 250 },
       { nome: "Hobbies", valor: 140 },
     ]},
     { grupo: "Compras", valor: 620, categorias: [
       { nome: "Roupas", valor: 300 },
       { nome: "Casa", valor: 320 },
     ]},
-    { grupo: "Educacao", valor: 350, categorias: [
+    { grupo: "Educação", valor: 350, categorias: [
       { nome: "Curso online", valor: 350 },
     ]},
     { grupo: "Outros", valor: 220, categorias: [
@@ -212,13 +212,13 @@ export type HubComercialDemoData = {
 
 export type ProdutoFicticio = { id: string; nome: string; linha: string; precoUnitario: number }
 
-// Catalogo ficticio de uma distribuidora de alimentos e bebidas, sem
-// nenhuma semelhanca com o ramo real de produtos clorados.
+// Catálogo fictício de uma distribuidora de alimentos e bebidas, sem
+// nenhuma semelhança com o ramo real de produtos clorados.
 export const produtosFicticios: ProdutoFicticio[] = [
   { id: "1", nome: "Suco Natural Laranja 1L", linha: "Sucos", precoUnitario: 8.9 },
   { id: "2", nome: "Suco Natural Uva 1L", linha: "Sucos", precoUnitario: 8.9 },
-  { id: "3", nome: "Agua de Coco 500ml", linha: "Bebidas", precoUnitario: 6.5 },
-  { id: "4", nome: "Refrigerante Guarana 2L", linha: "Bebidas", precoUnitario: 9.9 },
+  { id: "3", nome: "Água de Coco 500ml", linha: "Bebidas", precoUnitario: 6.5 },
+  { id: "4", nome: "Refrigerante Guaraná 2L", linha: "Bebidas", precoUnitario: 9.9 },
   { id: "5", nome: "Barra de Cereal Cx 12un", linha: "Snacks", precoUnitario: 42.0 },
   { id: "6", nome: "Biscoito Integral Cx 24un", linha: "Snacks", precoUnitario: 58.0 },
 ]
@@ -250,8 +250,8 @@ export type HubComercialAnaliseRede = {
   totalGeral: number
 }
 
-// Todos os nomes, valores e percentuais abaixo sao ficticios, sem nenhuma
-// relacao com empresa, CNPJ, vendedor ou faturamento real.
+// Todos os nomes, valores e percentuais abaixo são fictícios, sem nenhuma
+// relação com empresa, CNPJ, vendedor ou faturamento real.
 export const hubComercialDemoData: HubComercialDemoData = {
   biVendas: {
     positivacao: "31,4%",
@@ -277,8 +277,8 @@ export const hubComercialDemoData: HubComercialDemoData = {
     ],
     rankingProdutos: [
       { produto: "Suco Natural Laranja 1L", valor: 142000 },
-      { produto: "Agua de Coco 500ml", valor: 118000 },
-      { produto: "Refrigerante Guarana 2L", valor: 96000 },
+      { produto: "Água de Coco 500ml", valor: 118000 },
+      { produto: "Refrigerante Guaraná 2L", valor: 96000 },
       { produto: "Barra de Cereal Cx 12un", valor: 74000 },
       { produto: "Biscoito Integral Cx 24un", valor: 58000 },
       { produto: "Suco Natural Uva 1L", valor: 51000 },
@@ -343,8 +343,8 @@ export const hubComercialDemoData: HubComercialDemoData = {
   ],
   saldoEntregas: [
     { dataCadastro: "02/07/2026", cliente: "Distribuidora Exemplo Ltda", cnpj: "12.345.678/0001-90", numeroPedido: "PED-1001", produto: "Suco Natural Laranja 1L", quantidadePendente: 120 },
-    { dataCadastro: "05/07/2026", cliente: "Comercial Ficticia S.A.", cnpj: "23.456.789/0001-01", numeroPedido: "PED-1002", produto: "Agua de Coco 500ml", quantidadePendente: 80 },
-    { dataCadastro: "08/07/2026", cliente: "Atacadista Modelo Eireli", cnpj: "34.567.890/0001-12", numeroPedido: "PED-1003", produto: "Refrigerante Guarana 2L", quantidadePendente: 200 },
+    { dataCadastro: "05/07/2026", cliente: "Comercial Ficticia S.A.", cnpj: "23.456.789/0001-01", numeroPedido: "PED-1002", produto: "Água de Coco 500ml", quantidadePendente: 80 },
+    { dataCadastro: "08/07/2026", cliente: "Atacadista Modelo Eireli", cnpj: "34.567.890/0001-12", numeroPedido: "PED-1003", produto: "Refrigerante Guaraná 2L", quantidadePendente: 200 },
     { dataCadastro: "11/07/2026", cliente: "Mercado Referencia Ltda", cnpj: "45.678.901/0001-23", numeroPedido: "PED-1004", produto: "Barra de Cereal Cx 12un", quantidadePendente: 45 },
     { dataCadastro: "14/07/2026", cliente: "Rede Exemplo Comercio", cnpj: "56.789.012/0001-34", numeroPedido: "PED-1005", produto: "Biscoito Integral Cx 24un", quantidadePendente: 60 },
     { dataCadastro: "17/07/2026", cliente: "Distribuidora Exemplo Ltda", cnpj: "12.345.678/0001-90", numeroPedido: "PED-1006", produto: "Suco Natural Uva 1L", quantidadePendente: 90 },

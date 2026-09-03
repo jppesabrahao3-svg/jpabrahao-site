@@ -31,10 +31,10 @@ export default function MarketingComIAPage() {
         </Link>
 
         <div style={{ marginBottom: 4 }}>
-          <span style={{ fontFamily: "var(--font-syne), sans-serif", fontSize: 12, color: C.green, letterSpacing: "0.1em", textTransform: "uppercase" as const, fontWeight: 600 }}>
+          <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 12, color: C.green, letterSpacing: "0.1em", textTransform: "uppercase" as const, fontWeight: 700 }}>
             Marketing com IA
           </span>
-          <h1 style={{ fontFamily: "var(--font-syne), sans-serif", fontWeight: 800, fontSize: "clamp(24px, 3.6vw, 34px)", letterSpacing: "-0.02em", color: C.text, marginTop: 8, marginBottom: 18 }}>
+          <h1 style={{ fontFamily: "var(--font-inter), sans-serif", fontWeight: 700, fontSize: "clamp(24px, 3.6vw, 34px)", letterSpacing: "-0.02em", color: C.text, marginTop: 8, marginBottom: 18 }}>
             Resultado de um mes de operacao
           </h1>
         </div>

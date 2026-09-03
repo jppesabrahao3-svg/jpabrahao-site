@@ -1,8 +1,10 @@
 ﻿import type { Metadata } from "next"
-import { Syne, Inter } from "next/font/google"
+import { Inter } from "next/font/google"
 import "./globals.css"
+import GoogleAnalytics from "./components/GoogleAnalytics"
+import MicrosoftClarity from "./components/MicrosoftClarity"
+import AvisoCookies from "./components/AvisoCookies"
 
-const syne = Syne({ subsets: ["latin"], variable: "--font-syne", display: "swap" })
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" })
 
 export const metadata: Metadata = {
@@ -20,8 +22,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={`${syne.variable} ${inter.variable}`} data-scroll-behavior="smooth">
-      <body>{children}</body>
+    <html lang="pt-BR" className={inter.variable} data-scroll-behavior="smooth">
+      <body>
+        {children}
+        <GoogleAnalytics />
+        <MicrosoftClarity />
+        <AvisoCookies />
+      </body>
     </html>
   )
 }

@@ -21,9 +21,9 @@ const C = {
   amberFaint: "#2E230D",
 } as const
 
-const syne = { fontFamily: "var(--font-syne), sans-serif" }
+const titleFont = { fontFamily: "var(--font-inter), sans-serif" }
 
-const TABS = ["Dashboard", "Tarefas", "Parcerias", "Calendario"] as const
+const TABS = ["Dashboard", "Tarefas", "Parcerias", "Calendário"] as const
 type Tab = (typeof TABS)[number]
 
 function formatBRL(v: number) {
@@ -42,7 +42,7 @@ const cardStyle: CSSProperties = {
 }
 
 const sectionTitle: CSSProperties = {
-  ...syne,
+  ...titleFont,
   fontWeight: 700,
   fontSize: 15,
   color: C.text,
@@ -62,11 +62,11 @@ export default function HubMarketingDemoPage() {
           <span aria-hidden>←</span> Voltar
         </Link>
 
-        <h1 style={{ ...syne, fontWeight: 800, fontSize: "clamp(22px, 3.2vw, 30px)", letterSpacing: "-0.02em", marginBottom: 8 }}>
-          Hub de Marketing, demonstracao com dados ficticios
+        <h1 style={{ ...titleFont, fontWeight: 700, fontSize: "clamp(22px, 3.2vw, 30px)", letterSpacing: "-0.02em", marginBottom: 8 }}>
+          Hub de Marketing, demonstração com dados fictícios
         </h1>
         <p style={{ fontSize: 13, color: C.muted, fontStyle: "italic", marginBottom: 28 }}>
-          Todos os numeros, nomes e handles desta pagina sao ilustrativos, sem relacao com nenhum cliente real.
+          Todos os números, nomes e handles desta página são ilustrativos, sem relação com nenhum cliente real.
         </p>
 
         <div
@@ -81,7 +81,7 @@ export default function HubMarketingDemoPage() {
               type="button"
               onClick={() => setTab(t)}
               style={{
-                ...syne, fontSize: 13, fontWeight: 700, padding: "9px 18px", borderRadius: 7, border: "none",
+                ...titleFont, fontSize: 13, fontWeight: 700, padding: "9px 18px", borderRadius: 7, border: "none",
                 cursor: "pointer", whiteSpace: "nowrap" as const,
                 backgroundColor: tab === t ? C.green : "transparent",
                 color: tab === t ? C.bg : C.muted,
@@ -96,7 +96,7 @@ export default function HubMarketingDemoPage() {
         {tab === "Dashboard" && <DashboardTab />}
         {tab === "Tarefas" && <TarefasTab />}
         {tab === "Parcerias" && <ParceriasTab />}
-        {tab === "Calendario" && <CalendarioTab />}
+        {tab === "Calendário" && <CalendarioTab />}
       </div>
     </main>
   )
@@ -114,7 +114,7 @@ function KpiCard({ label, valor }: { label: string; valor: number }) {
 
   return (
     <div style={{ ...cardStyle, borderTop: `2px solid ${C.green}` }}>
-      <div style={{ ...syne, fontWeight: 800, fontSize: "clamp(26px, 3vw, 34px)", color: C.text, letterSpacing: "-0.02em", lineHeight: 1, marginBottom: 8 }}>
+      <div style={{ ...titleFont, fontWeight: 700, fontSize: "clamp(26px, 3vw, 34px)", color: C.text, letterSpacing: "-0.02em", lineHeight: 1, marginBottom: 8 }}>
         {Math.round(display)}
       </div>
       <div style={{ fontSize: 13, color: C.muted }}>{label}</div>
@@ -146,19 +146,19 @@ function DashboardTab() {
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16 }}>
         <div style={cardStyle}>
-          <h2 style={sectionTitle}>Proximos prazos</h2>
+          <h2 style={sectionTitle}>Próximos prazos</h2>
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
             {proximosPrazos.map((p) => (
               <div key={p.titulo} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, backgroundColor: C.surface, borderRadius: 6, padding: "10px 12px" }}>
                 <span style={{ fontSize: 14, color: C.text }}>{p.titulo}</span>
-                <span style={{ ...syne, fontSize: 12, fontWeight: 700, color: C.green, backgroundColor: C.greenFaint, padding: "3px 9px", borderRadius: 4, whiteSpace: "nowrap" as const }}>{p.data}</span>
+                <span style={{ ...titleFont, fontSize: 12, fontWeight: 700, color: C.green, backgroundColor: C.greenFaint, padding: "3px 9px", borderRadius: 4, whiteSpace: "nowrap" as const }}>{p.data}</span>
               </div>
             ))}
           </div>
         </div>
 
         <div style={cardStyle}>
-          <h2 style={sectionTitle}>Orcamento do mes</h2>
+          <h2 style={sectionTitle}>Orçamento do mês</h2>
           <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13, color: C.muted, marginBottom: 8 }}>
             <span>{formatBRL(orcamento.gasto)} gasto</span>
             <span>{formatBRL(orcamento.total)} total</span>
@@ -166,7 +166,7 @@ function DashboardTab() {
           <div style={{ height: 10, borderRadius: 5, backgroundColor: C.surface, overflow: "hidden", marginBottom: 8 }}>
             <div style={{ height: "100%", width: `${orcamentoPct}%`, backgroundColor: C.green, borderRadius: 5, transition: "width 0.4s ease" }} />
           </div>
-          <div style={{ fontSize: 12, color: C.muted }}>{orcamentoPct}% do orcamento utilizado</div>
+          <div style={{ fontSize: 12, color: C.muted }}>{orcamentoPct}% do orçamento utilizado</div>
         </div>
       </div>
 
@@ -182,7 +182,7 @@ function DashboardTab() {
                   <span style={{ fontSize: 14, color: C.text, fontWeight: 500 }}>{c.nome}</span>
                   <span
                     style={{
-                      ...syne, fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 4, whiteSpace: "nowrap" as const,
+                      ...titleFont, fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 4, whiteSpace: "nowrap" as const,
                       color: isDone ? C.green : C.amber,
                       backgroundColor: isDone ? C.greenFaint : C.amberFaint,
                     }}
@@ -202,14 +202,14 @@ function DashboardTab() {
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 16 }}>
         <div style={cardStyle}>
-          <h2 style={sectionTitle}>Impressoes x alcance</h2>
+          <h2 style={sectionTitle}>Impressões x alcance</h2>
           <ResponsiveContainer width="100%" height={220}>
             <LineChart data={graficoImpressoesAlcance} margin={{ top: 4, right: 8, left: -20, bottom: 0 }}>
               <CartesianGrid stroke={C.border} vertical={false} />
               <XAxis dataKey="mes" stroke={C.muted} fontSize={11} tickLine={false} axisLine={{ stroke: C.border }} />
               <YAxis stroke={C.muted} fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${Math.round(v / 1000)}k`} />
               <Tooltip content={<ChartTooltip />} />
-              <Line type="monotone" dataKey="impressoes" name="Impressoes" stroke={C.green} strokeWidth={2} dot={false} />
+              <Line type="monotone" dataKey="impressoes" name="Impressões" stroke={C.green} strokeWidth={2} dot={false} />
               <Line type="monotone" dataKey="alcance" name="Alcance" stroke={C.amber} strokeWidth={2} dot={false} />
             </LineChart>
           </ResponsiveContainer>
@@ -243,7 +243,7 @@ function DashboardTab() {
 function TarefaCardView({ card }: { card: TarefaCard }) {
   return (
     <div style={{ backgroundColor: C.card, border: `1px solid ${C.border}`, borderRadius: 7, padding: "10px 12px", display: "flex", flexDirection: "column", gap: 8 }}>
-      <span style={{ ...syne, fontSize: 10, fontWeight: 700, color: C.green, backgroundColor: C.greenFaint, padding: "2px 8px", borderRadius: 4, alignSelf: "flex-start" }}>{card.tag}</span>
+      <span style={{ ...titleFont, fontSize: 10, fontWeight: 700, color: C.green, backgroundColor: C.greenFaint, padding: "2px 8px", borderRadius: 4, alignSelf: "flex-start" }}>{card.tag}</span>
       <span style={{ fontSize: 13, color: C.text, lineHeight: 1.4 }}>{card.titulo}</span>
     </div>
   )
@@ -266,11 +266,11 @@ function TarefasTab() {
 function ParceriaCardView({ card }: { card: ParceriaCard }) {
   return (
     <div style={{ backgroundColor: C.card, border: `1px solid ${C.border}`, borderRadius: 7, padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6 }}>
-      <span style={{ ...syne, fontSize: 13, fontWeight: 700, color: C.text }}>{card.handle}</span>
+      <span style={{ ...titleFont, fontSize: 13, fontWeight: 700, color: C.text }}>{card.handle}</span>
       <span style={{ fontSize: 12, color: C.muted }}>{formatNum(card.seguidores)} seguidores</span>
       {card.contrato !== undefined && (
         <span style={{ fontSize: 11, color: C.green }}>
-          {formatBRL(card.contrato)}/mes · {formatBRL(card.custoView ?? 0)}/view
+          {formatBRL(card.contrato)}/mês · {formatBRL(card.custoView ?? 0)}/view
         </span>
       )}
     </div>
@@ -289,9 +289,9 @@ function ParceriasTab() {
   )
 }
 
-/* ---------- Calendario ---------- */
+/* ---------- Calendário ---------- */
 
-const CALENDAR_CELLS = 35 // 5 semanas x 7 dias, so visual fixo
+const CALENDAR_CELLS = 35 // 5 semanas x 7 dias, só visual fixo
 
 function CalendarioTab() {
   const { mes, eventos } = D.calendario
@@ -329,7 +329,7 @@ function CalendarioTab() {
                 <span
                   title={evento}
                   style={{
-                    ...syne, fontSize: 9, fontWeight: 700, color: C.bg, backgroundColor: C.green,
+                    ...titleFont, fontSize: 9, fontWeight: 700, color: C.bg, backgroundColor: C.green,
                     borderRadius: 999, padding: "2px 6px", lineHeight: 1.3,
                     overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" as const,
                   }}
@@ -342,11 +342,11 @@ function CalendarioTab() {
         })}
       </div>
 
-      <h2 style={sectionTitle}>Eventos do mes</h2>
+      <h2 style={sectionTitle}>Eventos do mês</h2>
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
         {eventos.map((e) => (
           <div key={e.dia} style={{ display: "flex", alignItems: "center", gap: 12, backgroundColor: C.surface, borderRadius: 6, padding: "10px 12px" }}>
-            <span style={{ ...syne, fontSize: 12, fontWeight: 700, color: C.green, backgroundColor: C.greenFaint, padding: "3px 9px", borderRadius: 4 }}>Dia {e.dia}</span>
+            <span style={{ ...titleFont, fontSize: 12, fontWeight: 700, color: C.green, backgroundColor: C.greenFaint, padding: "3px 9px", borderRadius: 4 }}>Dia {e.dia}</span>
             <span style={{ fontSize: 13, color: C.text }}>{e.titulo}</span>
           </div>
         ))}

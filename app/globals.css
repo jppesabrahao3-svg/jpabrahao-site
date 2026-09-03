@@ -90,7 +90,30 @@ body {
 .modal-overlay { animation: modalFadeIn 0.18s ease both; }
 .modal-panel   { animation: modalPanelIn 0.22s cubic-bezier(0.4, 0, 0.2, 1) both; }
 
+@keyframes typingBlink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+.typing-cursor { animation: typingBlink 0.9s step-end infinite; }
+
+.automacao-secundario {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 640px) {
+  .automacao-secundario { grid-template-columns: 1fr 1fr; align-items: start; }
+}
+
+.automacao-modal-scroll { scrollbar-width: thin; scrollbar-color: #2FA36B transparent; }
+.automacao-modal-scroll::-webkit-scrollbar { width: 6px; }
+.automacao-modal-scroll::-webkit-scrollbar-track { background: transparent; }
+.automacao-modal-scroll::-webkit-scrollbar-thumb { background: #2FA36B; border-radius: 3px; opacity: 0.5; }
+
 @media (prefers-reduced-motion: reduce) {
   .case-card { transition: none; }
   .modal-overlay, .modal-panel { animation: none; }
+  .typing-cursor { animation: none; }
 }

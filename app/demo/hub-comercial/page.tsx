@@ -26,10 +26,14 @@ const C = {
   redFaint:   "#2A1714",
 } as const
 
-const syne = { fontFamily: "var(--font-syne), sans-serif" }
+const titleFont = { fontFamily: "var(--font-inter), sans-serif" }
 
 function brl(v: number) {
   return v.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 })
+}
+
+function brlPreciso(v: number) {
+  return v.toLocaleString("pt-BR", { style: "currency", currency: "BRL", minimumFractionDigits: 2, maximumFractionDigits: 2 })
 }
 
 type CardKey = "bi-vendas" | "inadimplentes" | "pedidos" | "contratos" | "entregas" | "analise"
@@ -45,11 +49,11 @@ type CardDef = {
 
 const CARDS: CardDef[] = [
   { key: "bi-vendas", tag: "Analytics", icon: BarChart3, title: "BI de Vendas", desc: "Painel de metas, faturamento e ranking de vendedores em tempo real.", disponivel: true },
-  { key: "inadimplentes", tag: "Financeiro", icon: AlertTriangle, title: "Clientes Inadimplentes", desc: "Inadimplencia consolidada por representante e por cliente.", disponivel: true },
-  { key: "pedidos", tag: "Operacional", icon: ClipboardList, title: "Cadastro de Pedidos", desc: "Lancamento e acompanhamento de pedidos em um unico lugar.", disponivel: true },
-  { key: "contratos", tag: "Comercial", icon: FileText, title: "Contratos Comerciais", desc: "Gestao de contratos, vigencias e condicoes comerciais.", disponivel: true },
+  { key: "inadimplentes", tag: "Financeiro", icon: AlertTriangle, title: "Clientes Inadimplentes", desc: "Inadimplência consolidada por representante e por cliente.", disponivel: true },
+  { key: "pedidos", tag: "Operacional", icon: ClipboardList, title: "Cadastro de Pedidos", desc: "Lançamento e acompanhamento de pedidos em um único lugar.", disponivel: true },
+  { key: "contratos", tag: "Comercial", icon: FileText, title: "Contratos Comerciais", desc: "Gestão de contratos, vigências e condições comerciais.", disponivel: true },
   { key: "entregas", tag: "Logistica", icon: Truck, title: "Saldo de Entregas", desc: "Acompanhamento do saldo de entregas por pedido e por rota.", disponivel: true },
-  { key: "analise", tag: "Analise", icon: TrendingUp, title: "Analise de Vendas", desc: "Tendencias, sazonalidade e projecao de vendas.", disponivel: true },
+  { key: "analise", tag: "Análise", icon: TrendingUp, title: "Análise de Vendas", desc: "Tendências, sazonalidade e projeção de vendas.", disponivel: true },
 ]
 
 function ChartTooltip({ active, payload, label }: { active?: boolean; payload?: { name: string; value: number; color: string }[]; label?: string }) {
@@ -94,7 +98,7 @@ export default function HubComercialDemoPage() {
         <Link href="/" style={{ display: "inline-flex", alignItems: "center", gap: 6, color: C.muted, textDecoration: "none" }}>
           <span aria-hidden>←</span> Voltar ao site
         </Link>
-        <span style={{ fontStyle: "italic" as const }}>Demonstracao com dados ficticios</span>
+        <span style={{ fontStyle: "italic" as const }}>Demonstracao com dados fictícios</span>
       </div>
 
       {/* HERO */}
@@ -106,18 +110,18 @@ export default function HubComercialDemoPage() {
         }}
       >
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <span style={{ ...syne, fontSize: 12, fontWeight: 700, color: C.green, letterSpacing: "0.14em", textTransform: "uppercase" as const }}>
+          <span style={{ ...titleFont, fontSize: 12, fontWeight: 700, color: C.green, letterSpacing: "0.14em", textTransform: "uppercase" as const }}>
             Hub Comercial
           </span>
-          <h1 style={{ ...syne, fontWeight: 800, fontSize: "clamp(30px, 4.6vw, 46px)", letterSpacing: "-0.02em", color: C.text, marginTop: 10, marginBottom: 14 }}>
-            Central de Decisao
+          <h1 style={{ ...titleFont, fontWeight: 700, fontSize: "clamp(30px, 4.6vw, 46px)", letterSpacing: "-0.02em", color: C.text, marginTop: 10, marginBottom: 14 }}>
+            Central de Decisão
           </h1>
           <p style={{ fontSize: 16, color: C.muted, lineHeight: 1.6, maxWidth: 560, marginBottom: 20 }}>
-            Acesso rapido a todos os dados e ferramentas operacionais em um so lugar.
+            Acesso rápido a todos os dados e ferramentas operacionais em um só lugar.
           </p>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 8, backgroundColor: C.greenFaint, border: `1px solid ${C.greenDim}`, borderRadius: 999, padding: "6px 14px" }}>
             <span className="pulse-dot" style={{ display: "inline-block", width: 7, height: 7, borderRadius: "50%", backgroundColor: C.green }} />
-            <span style={{ fontSize: 12, color: C.green, fontWeight: 600 }}>Demonstracao · dados ficticios</span>
+            <span style={{ fontSize: 12, color: C.green, fontWeight: 600 }}>Demonstracao · dados fictícios</span>
           </div>
         </div>
       </section>
@@ -140,7 +144,7 @@ export default function HubComercialDemoPage() {
                 }}
               >
                 {!card.disponivel && (
-                  <span style={{ position: "absolute", top: 14, right: 14, ...syne, fontSize: 10, fontWeight: 700, color: C.amber, backgroundColor: C.amberFaint, padding: "3px 9px", borderRadius: 999, letterSpacing: "0.04em" }}>
+                  <span style={{ position: "absolute", top: 14, right: 14, ...titleFont, fontSize: 10, fontWeight: 700, color: C.amber, backgroundColor: C.amberFaint, padding: "3px 9px", borderRadius: 999, letterSpacing: "0.04em" }}>
                     Em breve
                   </span>
                 )}
@@ -150,23 +154,23 @@ export default function HubComercialDemoPage() {
                     <Icon size={20} strokeWidth={1.8} />
                   </div>
                   {card.disponivel && (
-                    <span style={{ ...syne, fontSize: 10, fontWeight: 700, color: C.green, backgroundColor: C.greenFaint, padding: "3px 9px", borderRadius: 4, letterSpacing: "0.05em" }}>
+                    <span style={{ ...titleFont, fontSize: 10, fontWeight: 700, color: C.green, backgroundColor: C.greenFaint, padding: "3px 9px", borderRadius: 4, letterSpacing: "0.05em" }}>
                       {card.tag.toUpperCase()}
                     </span>
                   )}
                   {!card.disponivel && (
-                    <span style={{ ...syne, fontSize: 10, fontWeight: 700, color: C.muted, backgroundColor: C.surface, padding: "3px 9px", borderRadius: 4, letterSpacing: "0.05em" }}>
+                    <span style={{ ...titleFont, fontSize: 10, fontWeight: 700, color: C.muted, backgroundColor: C.surface, padding: "3px 9px", borderRadius: 4, letterSpacing: "0.05em" }}>
                       {card.tag.toUpperCase()}
                     </span>
                   )}
                 </div>
 
-                <h3 style={{ ...syne, fontWeight: 700, fontSize: 17, color: C.text, lineHeight: 1.3 }}>{card.title}</h3>
+                <h3 style={{ ...titleFont, fontWeight: 700, fontSize: 17, color: C.text, lineHeight: 1.3 }}>{card.title}</h3>
                 <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.6, flex: 1 }}>{card.desc}</p>
 
                 <span
                   style={{
-                    ...syne, fontSize: 12, fontWeight: 700, marginTop: "auto",
+                    ...titleFont, fontSize: 12, fontWeight: 700, marginTop: "auto",
                     color: card.disponivel ? C.bg : C.muted,
                     backgroundColor: card.disponivel ? C.green : C.surface,
                     border: card.disponivel ? "none" : `1px solid ${C.border}`,
@@ -196,7 +200,7 @@ export default function HubComercialDemoPage() {
             fontSize: 13, color: C.text, boxShadow: "0 12px 30px rgba(0,0,0,0.4)",
           }}
         >
-          Essa ferramenta ainda esta em desenvolvimento.
+          Essa ferramenta ainda está em desenvolvimento.
         </div>
       )}
     </main>
@@ -204,8 +208,8 @@ export default function HubComercialDemoPage() {
 }
 
 /* ============================================================
-   MODAL "BI DE VENDAS" — replica de painel Looker Studio.
-   Fundo e paleta proprios (cinza claro + azul), nao usa o tema
+   MODAL "BI DE VENDAS" — réplica de painel Looker Studio.
+   Fundo e paleta próprios (cinza claro + azul), não usa o tema
    escuro do site aqui dentro.
    ============================================================ */
 
@@ -312,8 +316,8 @@ function BiVendasModal({ onClose }: { onClose: () => void }) {
     }, {})
   ).map((r) => ({ ...r, percentual: `${Math.round((r.valor / r.meta) * 100)}%` }))
 
-  // Tabela "Cliente" reaproveita os mesmos clientes ficticios ja usados em clientesInadimplentes,
-  // so trocando o rotulo de leitura (mesma base de dado, sem criar cliente novo).
+  // Tabela "Cliente" reaproveita os mesmos clientes fictícios já usados em clientesInadimplentes,
+  // só trocando o rotulo de leitura (mesma base de dado, sem criar cliente novo).
   const porCliente = D.clientesInadimplentes.porCliente
 
   const vendedoresExibidos = vendedorFiltro === "Todos" ? d.rankingVendedores : d.rankingVendedores.filter((v) => v.vendedor === vendedorFiltro)
@@ -380,7 +384,7 @@ function BiVendasModal({ onClose }: { onClose: () => void }) {
         {/* CONTEUDO */}
         <div style={{ flex: 1, overflowY: "auto", padding: "20px 22px 8px", minWidth: 0 }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, minmax(120px, 1fr))", gap: 8, marginBottom: 8 }}>
-            <LookerKpi rotulo="Positivacao" valor={d.positivacao} />
+            <LookerKpi rotulo="Positivação" valor={d.positivacao} />
             <LookerKpi rotulo="Velocidade do dia" valor={d.velocidadeDia} />
             <LookerPill texto="p_base: Faturado" />
             <LookerPill texto="p_metrica: Valor (R$)" />
@@ -510,7 +514,7 @@ function BiVendasModal({ onClose }: { onClose: () => void }) {
           </div>
 
           <p style={{ fontSize: 10, color: LOOKER.inkMuted, margin: "10px 0 4px", fontStyle: "italic" }}>
-            Demonstracao com dados ficticios, para ilustrar a capacidade tecnica.
+            Demonstracao com dados fictícios, para ilustrar a capacidade tecnica.
           </p>
         </div>
       </div>
@@ -519,8 +523,8 @@ function BiVendasModal({ onClose }: { onClose: () => void }) {
 }
 
 /* ============================================================
-   MODAL "CLIENTES INADIMPLENTES" — replica de planilha Google Sheets.
-   Fundo e paleta proprios (branco + teal), nao usa o tema escuro
+   MODAL "CLIENTES INADIMPLENTES" — réplica de planilha Google Sheets.
+   Fundo e paleta próprios (branco + teal), não usa o tema escuro
    do site aqui dentro.
    ============================================================ */
 
@@ -591,7 +595,7 @@ function InadimplentesModal({ onClose }: { onClose: () => void }) {
           <X size={15} />
         </button>
 
-        {/* TOOLBAR FICTICIA */}
+        {/* TOOLBAR FICTÍCIA */}
         <div style={{ display: "flex", alignItems: "center", gap: 4, padding: "6px 12px", borderBottom: `1px solid ${SHEETS.border}` }}>
           <SheetsToolbarIcon><Undo2 size={15} /></SheetsToolbarIcon>
           <SheetsToolbarIcon><Redo2 size={15} /></SheetsToolbarIcon>
@@ -602,7 +606,7 @@ function InadimplentesModal({ onClose }: { onClose: () => void }) {
           <SheetsToolbarIcon><Percent size={15} /></SheetsToolbarIcon>
         </div>
 
-        {/* CABECALHO TEAL */}
+        {/* CABEÇALHO TEAL */}
         <div style={{ backgroundColor: SHEETS.teal, color: "#fff", textAlign: "center", padding: "22px 16px" }}>
           <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.12em" }}>INADIMPLENTES</div>
           <div style={{ fontSize: "clamp(26px, 4vw, 34px)", fontWeight: 700, marginTop: 8 }}>{brl(d.totalInadimplencia)}</div>
@@ -742,11 +746,11 @@ function InadimplentesModal({ onClose }: { onClose: () => void }) {
           </div>
 
           <p style={{ fontSize: 10, color: SHEETS.inkMuted, marginTop: 16, fontStyle: "italic" }}>
-            Demonstracao com dados ficticios, para ilustrar a capacidade tecnica.
+            Demonstracao com dados fictícios, para ilustrar a capacidade tecnica.
           </p>
         </div>
 
-        {/* ABAS FICTICIAS */}
+        {/* ABAS FICTÍCIAS */}
         <div style={{ display: "flex", alignItems: "center", gap: 2, padding: "4px 8px", borderTop: `1px solid ${SHEETS.border}`, backgroundColor: SHEETS.headBg }}>
           {SHEETS_TABS.map((t) => (
             <button
@@ -770,8 +774,8 @@ function InadimplentesModal({ onClose }: { onClose: () => void }) {
 }
 
 /* ============================================================
-   MODAL "CADASTRO DE PEDIDOS" — replica do sistema real "FASE BETA".
-   Tema escuro estilo SaaS, paleta propria (nao usa o tema do site).
+   MODAL "CADASTRO DE PEDIDOS" — réplica do sistema real "FASE BETA".
+   Tema escuro estilo SaaS, paleta propria (não usa o tema do site).
    ============================================================ */
 
 const PEDIDOS = {
@@ -787,7 +791,7 @@ const PEDIDOS = {
   green:     "#22C55E",
 } as const
 
-const PEDIDOS_ABAS = ["Plano Comercial", "Novo Pedido", "Analise de Custos", "Historico", "Carteira Aberta"]
+const PEDIDOS_ABAS = ["Plano Comercial", "Novo Pedido", "Análise de Custos", "Histórico", "Carteira Aberta"]
 const PEDIDOS_FORMAS_PAGAMENTO = ["A vista", "30 dias", "30-60 dias"]
 const PEDIDOS_NAV_ICONS = [LayoutGrid, ClipboardList, FileText, Truck, TrendingUp, Users, Settings]
 
@@ -873,7 +877,7 @@ function PedidosModal({ onClose }: { onClose: () => void }) {
 
         {/* CONTEUDO */}
         <div style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>
-          {/* CABECALHO */}
+          {/* CABEÇALHO */}
           <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "18px 22px", borderBottom: `1px solid ${PEDIDOS.border}` }}>
             <div style={{ width: 38, height: 38, borderRadius: 8, backgroundColor: PEDIDOS.blue, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
               <ClipboardList size={19} color="#fff" strokeWidth={1.8} />
@@ -926,7 +930,7 @@ function PedidosModal({ onClose }: { onClose: () => void }) {
             {podeVerProdutos ? (
               <div>
                 <div style={{ fontSize: 12, fontWeight: 700, color: PEDIDOS.text, marginBottom: 10, textTransform: "uppercase" as const, letterSpacing: "0.04em" }}>
-                  Produtos Disponiveis
+                  Produtos Disponíveis
                 </div>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(230px, 1fr))", gap: 12 }}>
                   {produtosFicticios.map((p) => {
@@ -936,7 +940,7 @@ function PedidosModal({ onClose }: { onClose: () => void }) {
                       <div key={p.id} style={{ backgroundColor: PEDIDOS.panel, border: `1px solid ${PEDIDOS.border}`, borderRadius: 8, padding: "12px 14px", display: "flex", flexDirection: "column", gap: 8 }}>
                         <div>
                           <div style={{ fontSize: 13, fontWeight: 600 }}>{p.nome}</div>
-                          <div style={{ fontSize: 10, color: PEDIDOS.muted }}>{p.linha} · {brl(p.precoUnitario)}/un</div>
+                          <div style={{ fontSize: 10, color: PEDIDOS.muted }}>{p.linha} · {brlPreciso(p.precoUnitario)}/un</div>
                         </div>
                         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                           <label style={{ fontSize: 10, color: PEDIDOS.muted }}>Qtd</label>
@@ -952,7 +956,7 @@ function PedidosModal({ onClose }: { onClose: () => void }) {
                           />
                         </div>
                         <div style={{ fontSize: 12, color: PEDIDOS.muted }}>
-                          Valor liquido: <span style={{ color: PEDIDOS.green, fontWeight: 700 }}>{brl(valorLiquido)}</span>
+                          Valor liquido: <span style={{ color: PEDIDOS.green, fontWeight: 700 }}>{brlPreciso(valorLiquido)}</span>
                         </div>
                       </div>
                     )
@@ -961,21 +965,21 @@ function PedidosModal({ onClose }: { onClose: () => void }) {
               </div>
             ) : (
               <div style={{ textAlign: "center" as const, color: PEDIDOS.muted, fontSize: 13, padding: "40px 0" }}>
-                Selecione um cliente e uma forma de pagamento para ver os produtos disponiveis.
+                Selecione um cliente e uma forma de pagamento para ver os produtos disponíveis.
               </div>
             )}
 
             <p style={{ fontSize: 10, color: PEDIDOS.muted, marginTop: 20, fontStyle: "italic" }}>
-              Demonstracao com dados ficticios, para ilustrar a capacidade tecnica.
+              Demonstracao com dados fictícios, para ilustrar a capacidade tecnica.
             </p>
           </div>
 
           {/* RODAPE FIXO */}
           <div style={{ display: "flex", gap: 10, padding: "14px 22px", borderTop: `1px solid ${PEDIDOS.border}`, backgroundColor: PEDIDOS.sidebar }}>
             <PedidosRodapeBox rotulo="Total de Itens" valor={String(totalItens)} />
-            <PedidosRodapeBox rotulo="Valor Total" valor={brl(valorTotal)} destaque />
-            <PedidosRodapeBox rotulo="Comissao" valor={brl(comissao)} />
-            <PedidosRodapeBox rotulo="Margem Total" valor={brl(margemTotal)} />
+            <PedidosRodapeBox rotulo="Valor Total" valor={brlPreciso(valorTotal)} destaque />
+            <PedidosRodapeBox rotulo="Comissão" valor={brlPreciso(comissao)} />
+            <PedidosRodapeBox rotulo="Margem Total" valor={brlPreciso(margemTotal)} />
           </div>
         </div>
       </div>
@@ -985,8 +989,8 @@ function PedidosModal({ onClose }: { onClose: () => void }) {
 
 /* ============================================================
    MODAIS "CONTRATOS COMERCIAIS", "SALDO DE ENTREGAS" e
-   "ANALISE DE VENDAS" — mesmo "chrome" de planilha Google Sheets
-   ja usado no modal de Inadimplentes.
+   "ANÁLISE DE VENDAS" — mesmo "chrome" de planilha Google Sheets
+   já usado no modal de Inadimplentes.
    ============================================================ */
 
 function SheetsShell({
@@ -1025,7 +1029,7 @@ function SheetsShell({
           <X size={15} />
         </button>
 
-        {/* TOOLBAR FICTICIA */}
+        {/* TOOLBAR FICTÍCIA */}
         <div style={{ display: "flex", alignItems: "center", gap: 4, padding: "6px 12px", borderBottom: `1px solid ${SHEETS.border}` }}>
           <SheetsToolbarIcon><Undo2 size={15} /></SheetsToolbarIcon>
           <SheetsToolbarIcon><Redo2 size={15} /></SheetsToolbarIcon>
@@ -1036,7 +1040,7 @@ function SheetsShell({
           <SheetsToolbarIcon><Percent size={15} /></SheetsToolbarIcon>
         </div>
 
-        {/* CABECALHO TEAL */}
+        {/* CABEÇALHO TEAL */}
         <div style={{ backgroundColor: SHEETS.teal, color: "#fff", textAlign: "center", padding: "22px 16px" }}>
           <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.12em" }}>{titulo}</div>
           <div style={{ fontSize: "clamp(26px, 4vw, 34px)", fontWeight: 700, marginTop: 8 }}>{subtitulo}</div>
@@ -1046,11 +1050,11 @@ function SheetsShell({
         <div style={{ flex: 1, overflowY: "auto", padding: 16 }}>
           {children}
           <p style={{ fontSize: 10, color: SHEETS.inkMuted, marginTop: 16, fontStyle: "italic" }}>
-            Demonstracao com dados ficticios, para ilustrar a capacidade tecnica.
+            Demonstracao com dados fictícios, para ilustrar a capacidade tecnica.
           </p>
         </div>
 
-        {/* ABAS FICTICIAS */}
+        {/* ABAS FICTÍCIAS */}
         <div style={{ display: "flex", alignItems: "center", gap: 2, padding: "4px 8px", borderTop: `1px solid ${SHEETS.border}`, backgroundColor: SHEETS.headBg }}>
           {SHEETS_TABS.map((t) => (
             <button
@@ -1089,7 +1093,7 @@ function ContratosModal({ onClose }: { onClose: () => void }) {
               <th style={thStyle}>Rede</th>
               <th style={thStyle}>Associado</th>
               <th style={thStyle}>Cliente</th>
-              <th style={thStyle}>Data de Inicio</th>
+              <th style={thStyle}>Data de Início</th>
               <th style={thStyle}>Data de Vencimento</th>
               <th style={{ ...thStyle, textAlign: "right" }}>Porcentagem</th>
               <th style={{ ...thStyle, textAlign: "right" }}>Valor</th>
@@ -1132,7 +1136,7 @@ function EntregasModal({ onClose }: { onClose: () => void }) {
               <th style={thStyle}>Data de Cadastro</th>
               <th style={thStyle}>Cliente</th>
               <th style={thStyle}>CNPJ</th>
-              <th style={thStyle}>Numero do Pedido</th>
+              <th style={thStyle}>Número do Pedido</th>
               <th style={thStyle}>Produto</th>
               <th style={{ ...thStyle, textAlign: "right" }}>Quantidade Pendente</th>
             </tr>
@@ -1163,7 +1167,7 @@ function AnaliseVendasModal({ onClose }: { onClose: () => void }) {
   const tdStyle: React.CSSProperties = { padding: "4px 8px", fontSize: 12, color: SHEETS.ink, border: `1px solid ${SHEETS.border}` }
 
   return (
-    <SheetsShell onClose={onClose} titulo="ANALISE DE VENDAS" subtitulo={brl(totalGeralGeral)}>
+    <SheetsShell onClose={onClose} titulo="ANÁLISE DE VENDAS" subtitulo={brl(totalGeralGeral)}>
       <div style={{ overflowX: "auto" as const }}>
         <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 900 }}>
           <thead>

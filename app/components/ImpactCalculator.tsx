@@ -42,7 +42,7 @@ export default function ImpactCalculator({ colors: C }: { colors: Colors }) {
       <div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", fontSize: 13, color: C.text, marginBottom: 10 }}>
           <span>Quantas pessoas fazem esse trabalho hoje?</span>
-          <span style={{ fontFamily: "var(--font-syne), sans-serif", color: C.green, fontWeight: 700, fontSize: 16 }}>{people}</span>
+          <span style={{ fontFamily: "var(--font-inter), sans-serif", color: C.green, fontWeight: 700, fontSize: 16 }}>{people}</span>
         </div>
         <input
           type="range"
@@ -52,12 +52,12 @@ export default function ImpactCalculator({ colors: C }: { colors: Colors }) {
           value={people}
           onChange={(e) => setPeople(Number(e.target.value))}
           style={{ width: "100%", accentColor: C.green }}
-          aria-label="Numero de pessoas"
+          aria-label="Número de pessoas"
         />
       </div>
 
       <div>
-        <div style={{ fontSize: 13, color: C.text, marginBottom: 10 }}>Salario medio mensal</div>
+        <div style={{ fontSize: 13, color: C.text, marginBottom: 10 }}>Salário médio mensal</div>
         <div style={{ display: "flex", alignItems: "center", gap: 6, border: `1px solid ${C.border}`, borderRadius: 8, padding: "9px 12px", backgroundColor: C.bg }}>
           <span style={{ color: C.muted, fontSize: 14 }}>R$</span>
           <input
@@ -67,7 +67,7 @@ export default function ImpactCalculator({ colors: C }: { colors: Colors }) {
             value={salary}
             onChange={(e) => setSalary(Math.max(0, Number(e.target.value) || 0))}
             style={{ flex: 1, minWidth: 0, background: "transparent", border: "none", outline: "none", color: C.text, fontSize: 15, fontWeight: 600 }}
-            aria-label="Salario medio mensal"
+            aria-label="Salário médio mensal"
           />
         </div>
       </div>
@@ -76,12 +76,12 @@ export default function ImpactCalculator({ colors: C }: { colors: Colors }) {
 
       <div>
         <div style={{ fontSize: 11, color: C.muted, marginBottom: 4 }}>Economia mensal</div>
-        <div style={{ fontFamily: "var(--font-syne), sans-serif", fontSize: 20, fontWeight: 700, color: C.text }}>{formatBRL(monthlyDisplay)}</div>
+        <div style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 20, fontWeight: 700, color: C.text }}>{formatBRL(monthlyDisplay)}</div>
       </div>
 
       <div>
         <div style={{ fontSize: 11, color: C.muted, marginBottom: 4 }}>Economia anual</div>
-        <div style={{ fontFamily: "var(--font-syne), sans-serif", fontSize: "clamp(30px, 4vw, 42px)", fontWeight: 800, color: C.green, letterSpacing: "-0.02em", lineHeight: 1 }}>
+        <div style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "clamp(30px, 4vw, 42px)", fontWeight: 700, color: C.green, letterSpacing: "-0.02em", lineHeight: 1 }}>
           {formatBRL(annualDisplay)}
         </div>
       </div>
