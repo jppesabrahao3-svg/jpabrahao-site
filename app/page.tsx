@@ -25,26 +25,26 @@ const services = [
   { tag: "SISTEMA",    title: "Sistemas internos sob medida", desc: "Sua planilha vira sistema. Sua equipe para de perder tempo com processo manual e passa a alimentar uma ferramenta que trabalha sozinha." },
   { tag: "AUTOMAÇÃO",  title: "Automação com IA",              desc: "O relatório que hoje leva 3 horas para ficar pronto passa a chegar pronto, todo dia, sem ninguém copiar e colar nada." },
   { tag: "CONTEÚDO",   title: "Marketing com IA",              desc: "Planejamento, arte e legenda prontos todo mês, com relatório de resultado. Você decide o que vai pro ar, eu cuido do resto." },
-  { tag: "SITE",       title: "Site institucional",            desc: "Presença profissional pronta em até 3 semanas, sem depender de agência." },
+  { tag: "SITE",       title: "Site institucional",            desc: "Hoje sua empresa depende de perfil de rede social ou boca a boca pra passar credibilidade. Em até 3 semanas você tem um site profissional no ar, sem depender de agência." },
 ]
 
 const cases = [
   {
-    company: "Maior empresa de clorados do RJ",
+    company: "Pro Water — maior empresa de clorados do RJ",
     project: "Hub de Marketing",
     tag: "Sistema interno",
     before: "KPIs em planilha, tarefas no WhatsApp, briefings em e-mail, influenciadores em outro arquivo.",
     after:  "Hub centralizado com painel de margem, kanban de demandas, mapeamento de influenciadores e calendário de campanhas.",
   },
   {
-    company: "Maior empresa de clorados do RJ",
+    company: "Pro Water — maior empresa de clorados do RJ",
     project: "Hub Comercial",
     tag: "Sistema interno",
     before: "Informações críticas espalhadas em 4 sistemas. O vendedor abria quatro telas para fechar uma venda.",
     after:  "Uma tela: BI de vendas, clientes inadimplentes, contratos, saldo de entregas e cadastro de pedidos.",
   },
   {
-    company: "Maior empresa de clorados do RJ",
+    company: "Pro Water — maior empresa de clorados do RJ",
     project: "Automação Comercial",
     tag: "Automação + IA",
     before: "Equipe preenchia relatório manual. Diretor recebia dados atrasados.",
@@ -211,7 +211,7 @@ export default function Page() {
             <span style={label}>Sobre</span>
             <h2 style={{ ...h2, marginBottom: 26 }}>Quem resolve o problema</h2>
             <p style={{ fontSize: 16, color: C.muted, lineHeight: 1.75 }}>
-              Economista pela UFF. Trabalho todo dia com dados, processo e automação com IA, dentro da maior empresa de clorados do Rio de Janeiro. Uso o que aprendo lá para resolver o mesmo problema em empresas menores, que não têm um departamento de TI para chamar.
+              Economista pela UFF. Trabalho todo dia com dados, processo e automação com IA, dentro da Pro Water, a maior empresa de clorados do Rio de Janeiro. Uso o que aprendo lá para resolver o mesmo problema em empresas menores, que não têm um departamento de TI para chamar.
             </p>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>

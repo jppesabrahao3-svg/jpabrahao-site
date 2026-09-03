@@ -59,11 +59,11 @@ export default function HubMarketingDemoPage() {
           href="/"
           style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 14, color: C.muted, textDecoration: "none", marginBottom: 26 }}
         >
-          <span aria-hidden>←</span> Voltar
+          <span aria-hidden>←</span> Voltar ao site
         </Link>
 
         <h1 style={{ ...titleFont, fontWeight: 700, fontSize: "clamp(22px, 3.2vw, 30px)", letterSpacing: "-0.02em", marginBottom: 8 }}>
-          Hub de Marketing, demonstração com dados fictícios
+          Hub de Marketing: central de campanhas
         </h1>
         <p style={{ fontSize: 13, color: C.muted, fontStyle: "italic", marginBottom: 28 }}>
           Todos os números, nomes e handles desta página são ilustrativos, sem relação com nenhum cliente real.
