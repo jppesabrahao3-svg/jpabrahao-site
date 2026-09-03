@@ -250,7 +250,7 @@ function AutomacaoComercialDemo({ colors: C }: { colors: Colors }) {
             }}
           >
             <AlertTriangle size={11} strokeWidth={2} style={{ flexShrink: 0 }} />
-            Não é só um resumo. O sistema também avisa o que merece atenção.
+            Além do resumo, o sistema avisa o que merece atenção.
           </div>
           <div
             style={{

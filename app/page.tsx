@@ -30,21 +30,21 @@ const services = [
 
 const cases = [
   {
-    company: "Pro Water — maior empresa de clorados do RJ",
+    company: "Pro Water, maior empresa de clorados do RJ",
     project: "Hub de Marketing",
     tag: "Sistema interno",
     before: "KPIs em planilha, tarefas no WhatsApp, briefings em e-mail, influenciadores em outro arquivo.",
     after:  "Hub centralizado com painel de margem, kanban de demandas, mapeamento de influenciadores e calendário de campanhas.",
   },
   {
-    company: "Pro Water — maior empresa de clorados do RJ",
+    company: "Pro Water, maior empresa de clorados do RJ",
     project: "Hub Comercial",
     tag: "Sistema interno",
     before: "Informações críticas espalhadas em 4 sistemas. O vendedor abria quatro telas para fechar uma venda.",
     after:  "Uma tela: BI de vendas, clientes inadimplentes, contratos, saldo de entregas e cadastro de pedidos.",
   },
   {
-    company: "Pro Water — maior empresa de clorados do RJ",
+    company: "Pro Water, maior empresa de clorados do RJ",
     project: "Automação Comercial",
     tag: "Automação + IA",
     before: "Equipe preenchia relatório manual. Diretor recebia dados atrasados.",
@@ -193,7 +193,7 @@ export default function Page() {
           <span style={label}>Sem custo</span>
           <h2 style={{ ...h2, marginTop: 0 }}>Diagnóstico gratuito, 30 minutos</h2>
           <p style={{ fontSize: 16, lineHeight: 1.7, color: C.muted, maxWidth: 620 }}>
-            Eu atendo poucos diagnósticos por semana. Cada projeto recebe atenção real, não fila de agência. Nessa conversa eu te digo, sem custo, onde sua empresa está perdendo tempo e dinheiro, e se dá para resolver.
+            Eu atendo poucos diagnósticos por semana. Cada projeto recebe atenção real, sem entrar na fila de uma agência. Nessa conversa eu te digo, sem custo, onde sua empresa está perdendo tempo e dinheiro, e se dá para resolver.
           </p>
           <AgendarModal style={{ ...titleFont, display: "inline-block", backgroundColor: C.green, color: C.bg, padding: "15px 36px", borderRadius: 8, fontWeight: 700, fontSize: 16, border: "none", cursor: "pointer", marginTop: 8 }}>
             Agendar diagnóstico
