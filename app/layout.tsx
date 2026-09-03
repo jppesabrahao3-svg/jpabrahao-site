@@ -1,11 +1,17 @@
 ﻿import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Inter, Fraunces } from "next/font/google"
 import "./globals.css"
 import GoogleAnalytics from "./components/GoogleAnalytics"
 import MicrosoftClarity from "./components/MicrosoftClarity"
 import AvisoCookies from "./components/AvisoCookies"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" })
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  variable: "--font-fraunces",
+  display: "swap",
+})
 
 export const metadata: Metadata = {
   title: {
@@ -22,7 +28,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={inter.variable} data-scroll-behavior="smooth">
+    <html lang="pt-BR" className={`${inter.variable} ${fraunces.variable}`} data-scroll-behavior="smooth">
       <body>
         {children}
         <GoogleAnalytics />

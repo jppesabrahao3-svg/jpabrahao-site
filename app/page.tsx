@@ -95,8 +95,9 @@ const jsonLd = {
 export default function Page() {
   const font  = { fontFamily: "var(--font-inter), system-ui, sans-serif" }
   const titleFont  = { fontFamily: "var(--font-inter), sans-serif" }
+  const displayFont = { fontFamily: "var(--font-fraunces), serif" }
   const label = { fontSize: 12, ...titleFont, color: C.green, letterSpacing: "0.1em", textTransform: "uppercase" as const, fontWeight: 700 }
-  const h2    = { ...titleFont, fontWeight: 700, fontSize: "clamp(30px, 4.4vw, 44px)", letterSpacing: "-0.02em", color: C.text, marginTop: 14 }
+  const h2    = { ...displayFont, fontWeight: 600, fontSize: "clamp(30px, 4.4vw, 44px)", letterSpacing: "-0.01em", color: C.text, marginTop: 14 }
   const wrap  = { maxWidth: 1100, margin: "0 auto", padding: "0 24px" }
 
   return (
@@ -107,7 +108,7 @@ export default function Page() {
       {/* NAV */}
       <nav style={{ position: "sticky", top: 0, zIndex: 50, backgroundColor: C.bg + "F0", backdropFilter: "blur(14px)", borderBottom: `1px solid ${C.border}` }}>
         <div style={{ ...wrap, height: 64, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <span style={{ ...titleFont, fontWeight: 700, fontSize: 20, color: C.green, letterSpacing: "-0.02em" }}>JP Abrahao</span>
+          <span style={{ ...displayFont, fontWeight: 600, fontSize: 20, color: C.green, letterSpacing: "-0.01em" }}>JP Abrahao</span>
           <AgendarModal style={{ ...titleFont, backgroundColor: C.green, color: C.bg, padding: "9px 22px", borderRadius: 6, fontWeight: 700, fontSize: 14, border: "none", cursor: "pointer" }}>
             Agendar diagnóstico
           </AgendarModal>
@@ -125,11 +126,11 @@ export default function Page() {
               </span>
             </div>
 
-            <h1 className="fade-up-2" style={{ ...titleFont, fontWeight: 700, fontSize: "clamp(32px, 5vw, 60px)", lineHeight: 1.08, letterSpacing: "-0.03em", marginBottom: 24, maxWidth: 780 }}>
+            <h1 className="fade-up-2" style={{ ...displayFont, fontWeight: 600, fontSize: "clamp(32px, 5vw, 60px)", lineHeight: 1.1, letterSpacing: "-0.01em", marginBottom: 24, maxWidth: 780 }}>
               Sua empresa não precisa{" "}
               <span style={{ color: C.green }}>de uma software house</span>.
               <br />
-              <span style={{ fontWeight: 400, color: C.muted }}>Precisa de resultado.</span>
+              <span style={{ fontStyle: "italic", fontWeight: 400, color: C.muted }}>Precisa de resultado.</span>
             </h1>
 
             <p className="fade-up-3" style={{ fontSize: "clamp(16px, 2vw, 20px)", color: C.muted, lineHeight: 1.7, maxWidth: 560 }}>
@@ -224,7 +225,7 @@ export default function Page() {
       {/* CTA */}
       <section style={{ backgroundColor: C.greenFaint, borderTop: `1px solid ${C.greenDim}` }}>
         <div style={{ ...wrap, padding: "112px 24px", textAlign: "center" as const }}>
-          <h2 style={{ ...titleFont, fontWeight: 700, fontSize: "clamp(32px, 5vw, 58px)", letterSpacing: "-0.03em", color: C.text, lineHeight: 1.1, marginBottom: 20 }}>
+          <h2 style={{ ...displayFont, fontWeight: 600, fontSize: "clamp(32px, 5vw, 58px)", letterSpacing: "-0.01em", color: C.text, lineHeight: 1.1, marginBottom: 20 }}>
             Pronto para pagar menos<br />e entregar mais?
           </h2>
           <p style={{ fontSize: 18, color: C.muted, lineHeight: 1.7, marginBottom: 40 }}>Me conta o problema. A conversa é de graça.</p>
@@ -243,7 +244,7 @@ export default function Page() {
       {/* FOOTER */}
       <footer style={{ borderTop: `1px solid ${C.border}`, backgroundColor: C.bg }}>
         <div style={{ ...wrap, padding: "24px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap" as const, gap: 12 }}>
-          <span style={{ ...titleFont, fontWeight: 700, fontSize: 16, color: C.green }}>JP Abrahao</span>
+          <span style={{ ...displayFont, fontWeight: 600, fontSize: 16, color: C.green }}>JP Abrahao</span>
           <span style={{ fontSize: 13, color: C.muted }}>© 2026 · jpabrahao.com.br</span>
         </div>
       </footer>
